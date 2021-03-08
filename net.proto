@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package rpcdaemon;
+import "google/api/annotations.proto";
+//option go_package = "github.com/yourorg/yourprotos/gen/go/your/service/v1";
+
+message SyncRequest { string value = 1; }
+
+message SyncResponse {}
+
+// Handles net_* requests
+service NetService {
+  rpc Sync(SyncRequest) returns(SyncResponse) {
+    option(google.api.http) = {post : "/v1/example/echo" body : "*"};
+  }
+}
